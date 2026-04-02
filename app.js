@@ -8,6 +8,9 @@ Dbcon();
 app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", "views");
+app.get("/", (req, res) => {
+  res.redirect("/api/products");
+});
 app.use("/api", apiRoutes);
 app.use(express.static("public"));
 const PORT = 4005;
