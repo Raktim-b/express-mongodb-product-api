@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <title><%= title %></title>
+  </head>
+  <body>
+   <div class="max-w-370 w-full mx-auto px-3 py-10">
+
+  <h1 class="text-center text-4xl font-semibold mb-10">
+    <%= title %>
+  </h1>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-5">
+
+  <% data.forEach(item => { %>
+
+    <div class="bg-white rounded-xl transition">
+
+      <!-- Image -->
+      <div class="relative w-full h-140">
+
+        <img 
+        src="<%= item.image %>" 
+        class="w-full h-full object-cover rounded-t-xl"
+        />
+
+        <!-- Category -->
+        <span class="absolute top-2 left-2 bg-yellow-300 text-xs px-2 py-1 rounded font-bold">
+          <%= item.category %>
+        </span>
+
+      </div>
+
+      <!-- Content -->
+      <div class="p-4">
+
+        <div class="flex justify-between">
+
+          <!-- Product Name -->
+          <h3 class="text-sm font-semibold text-gray-900">
+            <%= item.name %>
+          </h3>
+
+          <!-- Colors -->
+          <div class="flex gap-1.5  text-sm font-semibold">
+            <% item.color.forEach(c => { %>
+              <span><%= c %></span>
+            <% }) %>
+          </div>
+
+        </div>
+
+        <!-- Description -->
+        <p class="text-gray-400 text-sm mt-1">
+          <%= item.desc %>
+        </p>
+
+        <div class="flex justify-between items-center mt-3">
+
+          <!-- Price -->
+          <span class="text-lg font-bold text-black">
+            $<%= item.price %>
+          </span>
+
+          <!-- Sizes -->
+          <div class="flex gap-1">
+            <% item.size.forEach(s => { %>
+              <span class="bg-gray-200 px-2 py-1 text-xs font-semibold rounded">
+                <%= s %>
+              </span>
+            <% }) %>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <% }) %>
+
+  </div>
+
+</div>
+
+  </body>
+</html>
