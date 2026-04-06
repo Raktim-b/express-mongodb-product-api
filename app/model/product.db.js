@@ -26,7 +26,7 @@ const ProductSchema = new Schema({
   },
   image: {
     type: String,
-    required: true,
+    // required: true,
   },
   category: {
     type: String,
@@ -36,6 +36,6 @@ const ProductSchema = new Schema({
     type: Boolean,
     default: false,
   },
-});
+},);
 const ProductModel = mongoose.model("product", ProductSchema);
 module.exports = ProductModel;

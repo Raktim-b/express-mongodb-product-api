@@ -1,5 +1,5 @@
 const httpStatusCode = require("../util/httpStatusCode");
-const ProductDetails = require("../module/product.db");
+const ProductDetails = require("../model/product.db");
 class ProductController {
   async createProduct(req, res) {
     try {
@@ -143,12 +143,6 @@ class ProductController {
       });
     }
   }
-  async productPage(req, res) {
-    const products = await ProductDetails.find();
-    res.render("product", {
-      title: "Product",
-      data: products,
-    });
-  }
+  
 }
 module.exports = new ProductController();

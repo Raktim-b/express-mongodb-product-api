@@ -1,0 +1,46 @@
+const httpStatusCode = require("../util/httpStatusCode");
+const ProductDetails = require("../model/product.db");
+class AddProductPageController {
+  async addProduct(req, res) {
+    res.render("addProduct", {
+      title: "Add Product",
+    });
+  }
+  async createProduct(req, res) {
+    try {
+      // console.log(req.body);
+      const { name, size, price, color, desc, category } = req.body;
+      const dupProduct = await ProductDetails.findOne({ name });
+      if (dupProduct) {
+        return res.status(httpStatusCode.BAD_REQUEST).json({
+          success: false,
+          message: "Duplicate Product",
+        });
+      }
+      if (!name || !size || !price || !color || !category) {
+        return res.status(httpStatusCode.BAD_REQUEST).json({
+          success: false,
+          message: "All fields are required",
+        });
+      }
+      const product = await ProductDetails({
+        name,
+        size,
+        price,
+        color,
+        desc,
+        category,
+      });
+      const result = await product.save();
+      if (result) {
+        return res.redirect("/products");
+      }
+    } catch (error) {
+      return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
+}
+module.exports = new AddProductPageController();

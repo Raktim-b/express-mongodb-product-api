@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/output.css" />
+  <title><%= title %></title>
+</head>
+
+<body class="bg-[#f0f0f0]/70 text-sm min-h-screen">
+
+  <div class="max-w-360 w-full mx-auto px-6 py-12">
+
+    <!-- HEADER -->
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <h1 class="text-2xl font-bold">Products List</h1>
+      </div>
+
+      <div class="flex gap-2">
+        <a href="/products"
+          class="bg-blue-600 text-white flex! gap-1 items-center px-4 py-3 rounded-md font-semibold">
+       
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="22px" height="21px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="#fff"/>
+</svg> Back To Home
+        </a>
+
+       
+      </div>
+    </div>
+
+    <!-- TABLE HEADER -->
+    <div class="grid grid-cols-10 border-t border-gray-300 rounded-lg font-semibold mb-3">
+      <div class="py-4 flex justify-center">Sl No.</div>
+      <div class="py-4 flex justify-center">Id</div>
+      <div class="py-4 flex justify-center">Product name</div>
+      <div class="py-4 flex justify-center">Size</div>
+      <div class="py-4 flex justify-center">Price</div>
+      <div class="py-4 flex justify-center">Color</div>
+      <div class="py-4 flex justify-center">Category</div>
+      <div class="py-4 flex justify-center">Desc</div>
+      <div class="py-4 flex justify-center col-span-2">Action</div>
+    </div>
+
+     <% data.forEach((element,index) => { %>
+
+        <!-- ROW -->
+        <div class="grid grid-cols-10 items-center bg-white rounded-lg  mb-3">
+          <div class="font-semibold flex items-center justify-center py-3">
+          <%= index + 1 %>
+        </div>
+          <div class="font-semibold flex items-center justify-center py-3">
+          <%= element._id.toString().slice(-4) %>
+        </div>
+          <div class="flex items-center justify-center py-3">
+          <%= element.name %>
+        </div>
+
+           <div class="flex gap-1.5 items-center justify-center font-semibold py-3">
+          <% element.size.forEach(s => { %>
+            <span><%= s %></span>
+          <% }) %>
+        </div>
+
+          <div class="flex items-center justify-center py-3">
+          <%= element.price %>
+        </div>
+
+           <div class="flex items-center justify-center gap-1.5 font-semibold py-3">
+          <% element.color.forEach(c => { %>
+            <span><%= c %></span>
+          <% }) %>
+        </div>
+
+            <div class="flex items-center justify-center py-3">
+          <%= element.category %>
+        </div>
+
+           <div class="line-clamp-1 overflow-y-hidden py-3 flex justify-center items-center">
+          <%= element.desc.slice(0,30) %>
+        </div>
+
+          <div class="col-span-2 flex justify-center items-center py-4 gap-2">
+           <a href="/products/restore/<%= element._id %>" class="bg-green-100 text-green-600 hover:bg-blue-100 py-1.5 px-5 rounded-md font-medium">
+  
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.52185 7H7C7.55229 7 8 7.44772 8 8C8 8.55229 7.55228 9 7 9H3C1.89543 9 1 8.10457 1 7V3C1 2.44772 1.44772 2 2 2C2.55228 2 3 2.44772 3 3V5.6754C4.26953 3.8688 6.06062 2.47676 8.14852 1.69631C10.6633 0.756291 13.435 0.768419 15.9415 1.73041C18.448 2.69239 20.5161 4.53782 21.7562 6.91897C22.9963 9.30013 23.3228 12.0526 22.6741 14.6578C22.0254 17.263 20.4464 19.541 18.2345 21.0626C16.0226 22.5842 13.3306 23.2444 10.6657 22.9188C8.00083 22.5931 5.54702 21.3041 3.76664 19.2946C2.20818 17.5356 1.25993 15.3309 1.04625 13.0078C0.995657 12.4579 1.45216 12.0088 2.00445 12.0084C2.55673 12.0079 3.00351 12.4566 3.06526 13.0055C3.27138 14.8374 4.03712 16.5706 5.27027 17.9625C6.7255 19.605 8.73118 20.6586 10.9094 20.9247C13.0876 21.1909 15.288 20.6513 17.0959 19.4075C18.9039 18.1638 20.1945 16.3018 20.7247 14.1724C21.2549 12.043 20.9881 9.79319 19.9745 7.8469C18.9608 5.90061 17.2704 4.3922 15.2217 3.6059C13.173 2.8196 10.9074 2.80968 8.8519 3.57803C7.11008 4.22911 5.62099 5.40094 4.57993 6.92229C4.56156 6.94914 4.54217 6.97505 4.52185 7Z" fill="#16A34A"/>
+</svg>
+           </a>
+
+
+          </div>
+        </div>
+
+        <% }) %>
+
+  </div>
+
+  <script src="/script/softDeleteScript.js"></script>
+
+</body>
+</html>
