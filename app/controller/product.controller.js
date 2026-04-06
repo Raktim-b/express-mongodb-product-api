@@ -95,6 +95,8 @@ class ProductController {
       });
     }
   }
+
+  
   async updtProduct(req, res) {
     try {
       const id = req.params.id;
