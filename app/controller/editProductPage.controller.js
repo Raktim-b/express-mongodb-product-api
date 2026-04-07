@@ -28,11 +28,7 @@ class EditProductProductPage {
           message: "id not found",
         });
       }
-      return res.status(httpStatusCode.OK).json({
-        success: true,
-        message: "data Updated successfully",
-        data: updatData,
-      });
+      return res.redirect("/products")
     } catch (error) {
       return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
         success: false,

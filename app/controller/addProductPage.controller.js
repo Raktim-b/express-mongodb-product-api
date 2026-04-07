@@ -8,8 +8,8 @@ class AddProductPageController {
   }
   async createProduct(req, res) {
     try {
-      // console.log(req.body);
-      const { name, size, price, color, desc, category } = req.body;
+      console.log(req.body);
+      const { name, size, price, color, stock, desc, category } = req.body;
       const dupProduct = await ProductDetails.findOne({ name });
       if (dupProduct) {
         return res.status(httpStatusCode.BAD_REQUEST).json({
@@ -17,7 +17,7 @@ class AddProductPageController {
           message: "Duplicate Product",
         });
       }
-      if (!name || !size || !price || !color || !category) {
+      if (!name || !size || !price || !color || !stock || !category) {
         return res.status(httpStatusCode.BAD_REQUEST).json({
           success: false,
           message: "All fields are required",
@@ -28,6 +28,7 @@ class AddProductPageController {
         size,
         price,
         color,
+        stock,
         desc,
         category,
       });

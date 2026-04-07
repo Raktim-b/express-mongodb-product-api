@@ -31,6 +31,18 @@ class TrashController {
       });
     }
   }
+  async HardDelete(req, res) {
+    try {
+      const id = req.params.id;
+      await ProductDetails.findByIdAndDelete(id);
+      return res.redirect("/products/trash");
+    } catch (error) {
+      return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
 }
 
 module.exports = new TrashController();

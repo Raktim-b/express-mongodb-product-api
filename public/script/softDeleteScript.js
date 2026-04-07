@@ -1,20 +1,11 @@
-const deleteProduct = async (id) => {
-  try {
-    const res = await fetch(`/products/delete/${id}`, {
-      method: "DELETE",
-    });
-    const result = await res.json();
-    if (result.success) {
-      showToast("Product deleted successfully");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1200);
-    } else {
-      alert(result.message);
-    }
-  } catch (error) {
-    console.log(error);
-  }
+const handleDelete = async (id) => {
+  await fetch(`/products/delete/${id}`);
+
+  showToast("Product moved to trash successfully.");
+
+  setTimeout(() => {
+    window.location.reload();
+  }, 800);
 };
 const showToast = (message) => {
   const toast = document.getElementById("toast");

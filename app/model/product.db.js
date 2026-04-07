@@ -19,6 +19,10 @@ const ProductSchema = new Schema({
     type: [String],
     required: true,
   },
+  stock: {
+    type: Number,
+    required: true,
+  },
   desc: {
     type: String,
     required: true,
@@ -36,6 +40,6 @@ const ProductSchema = new Schema({
     type: Boolean,
     default: false,
   },
-},);
+});
 const ProductModel = mongoose.model("product", ProductSchema);
 module.exports = ProductModel;
