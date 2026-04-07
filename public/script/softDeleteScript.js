@@ -5,7 +5,7 @@ const handleDelete = async (id) => {
 
   setTimeout(() => {
     window.location.reload();
-  }, 800);
+  }, 1000);
 };
 const showToast = (message) => {
   const toast = document.getElementById("toast");
