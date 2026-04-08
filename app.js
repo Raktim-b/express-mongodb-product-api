@@ -17,7 +17,7 @@ app.set("views", "views");
 //   res.redirect("/api/products");
 // });
 app.use("/api", apiRoutes);
-app.use("/products", productRoutes);
+app.use(productRoutes);
 app.use("/products", addProductRoutes);
 app.use("/products", editProductRoutes);
 app.use("/products", softDeleteRoutes);
