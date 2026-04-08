@@ -23,7 +23,7 @@ app.use("/products", editProductRoutes);
 app.use("/products", softDeleteRoutes);
 app.use("/products", trashRoutes);
 app.use(express.static("public"));
-const PORT = 4005;
+const PORT = process.env.PORT || 4005;
 app.listen(PORT, () => {
   console.log(`Server created at ${PORT}`);
 });
