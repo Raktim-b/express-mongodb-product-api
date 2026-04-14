@@ -13,6 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.set("views", "views");
+app.get("/", (req, res) => {
+  res.redirect("/products");
+});
 app.use((req, res, next) => {
   res.locals.search = "";
   next();
