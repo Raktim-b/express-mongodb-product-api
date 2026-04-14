@@ -16,7 +16,7 @@ app.set("views", "views");
 app.get("/", (req, res) => {
   res.redirect("/products");
 });
-app.use("/api", apiRoutes);
+// app.use("/api", apiRoutes);
 app.use("/products", productRoutes);
 app.use("/products", addProductRoutes);
 app.use("/products", editProductRoutes);
