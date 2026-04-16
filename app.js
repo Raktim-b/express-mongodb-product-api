@@ -28,6 +28,7 @@ app.use("/products", softDeleteRoutes);
 app.use("/products", trashRoutes);
 
 app.use(express.static("public"));
+app.use("/upload", express.static("upload"));
 const PORT = process.env.PORT || 4005;
 app.listen(PORT, () => {
   console.log(`Server created at ${PORT}`);

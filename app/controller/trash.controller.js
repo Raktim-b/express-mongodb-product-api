@@ -1,5 +1,6 @@
 const httpStatusCode = require("../util/httpStatusCode");
 const ProductDetails = require("../model/product.db");
+const fs = require("fs");
 class TrashController {
   async Trash(req, res) {
     try {
@@ -34,6 +35,22 @@ class TrashController {
   async HardDelete(req, res) {
     try {
       const id = req.params.id;
+      const deleteData = await ProductDetails.findById(id);
+      if (!deleteData) {
+        return res.status(httpStatusCode.NOT_FOUND).json({
+          success: false,
+          message: "id not found",
+        });
+      }
+      if (deleteData.image) {
+        fs.unlink(`./${deleteData.image}`, (err) => {
+          if (err) {
+            console.log("Error deleting file:", err);
+          } else {
+            console.log("File deleted successfully");
+          }
+        });
+      }
       await ProductDetails.findByIdAndDelete(id);
       return res.redirect("/products/trash");
     } catch (error) {

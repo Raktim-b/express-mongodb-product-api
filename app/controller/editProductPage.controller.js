@@ -1,5 +1,6 @@
 const ProductModel = require("../model/product.db");
 const httpStatusCode = require("../util/httpStatusCode");
+const fs = require("fs");
 class EditProductProductPage {
   async editProductPage(req, res) {
     try {
@@ -19,16 +20,31 @@ class EditProductProductPage {
   async updateProduct(req, res) {
     try {
       const id = req.params.id;
-      const updatData = await ProductModel.findByIdAndUpdate(id, req.body, {
-        new: true,
-      });
+      const updatData = await ProductModel.findById(id);
       if (!updatData) {
         return res.status(httpStatusCode.NOT_FOUND).json({
           success: false,
           message: "id not found",
         });
       }
-      return res.redirect("/products")
+      let updateObj = { ...req.body };
+      if (req.file) {
+        if (updatData.image) {
+          fs.unlink(`./${updatData.image}`, (err) => {
+            if (err) {
+              console.log("Error deleting file:", err);
+            } else {
+              console.log("File deleted successfully");
+            }
+          });
+        }
+        updateObj.image = req.file.path;
+      }
+      await ProductModel.findByIdAndUpdate(id, updateObj, {
+        new: true,
+      });
+
+      return res.redirect("/products");
     } catch (error) {
       return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json({
         success: false,

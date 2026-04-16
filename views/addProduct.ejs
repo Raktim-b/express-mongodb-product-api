@@ -42,7 +42,7 @@
       >
         <h2 class="font-medium text-gray-900 mb-6">Product Details</h2>
 
-        <form action="/products/post" method="POST" class="space-y-5">
+        <form action="/products/post" method="POST" enctype="multipart/form-data" class="space-y-5">
           <!-- Product Name -->
           <div>
             <label class="text-sm text-gray-500">Product Name</label>
@@ -112,7 +112,15 @@
               class="w-full border border-gray-200 rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 outline-none"
             />
           </div>
+          <div>
+            <label class="text-sm text-gray-500">Image</label>
 
+            <input
+              name="image"
+              type="file"
+              class="w-full border text-gray-500! border-gray-200 rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 outline-none"
+            />
+          </div>
           <!-- Description -->
           <div>
             <label class="text-sm text-gray-500">Description</label>

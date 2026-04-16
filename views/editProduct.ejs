@@ -41,6 +41,7 @@
         <form
           action="/products/update/<%= data._id %>"
           method="POST"
+          enctype="multipart/form-data"
           class="space-y-5"
         >
           <!-- PRODUCT NAME -->
@@ -118,7 +119,28 @@
               class="w-full border border-gray-200 rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 outline-none"
             />
           </div>
+          <!-- Color -->
+          <div>
+            <label class="text-sm text-gray-500">Color</label>
 
+            <input
+              name="color"
+              placeholder="Red,Black"
+              class="w-full border border-gray-200 rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 outline-none"
+            />
+          </div>
+          <div>
+            <label class="text-sm text-gray-500 ">Image</label>
+            <img
+              src="/<%= data.image %>"
+              class="w-30 h-30 object-cover  rounded-md my-2 border border-gray-200"
+            />
+            <input
+              name="image"
+              type="file"
+              class="w-full border text-gray-500! border-gray-200 rounded-lg px-4 py-2 mt-1 focus:ring-2 focus:ring-indigo-500 outline-none"
+            />
+          </div>
           <!-- DESCRIPTION -->
           <div>
             <label class="text-sm text-gray-500">Description</label>

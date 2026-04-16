@@ -32,6 +32,9 @@ class AddProductPageController {
         desc,
         category,
       });
+      if (req.file) {
+        product.image = req.file.path;
+      }
       const result = await product.save();
       if (result) {
         return res.redirect("/products");

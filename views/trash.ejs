@@ -42,7 +42,7 @@
       <div class="bg-white border border-gray-100 rounded-xl overflow-hidden">
         <!-- TABLE HEADER -->
         <div
-          class="grid grid-cols-12 px-4 py-3 border-b border-gray-100 bg-gray-50"
+          class="grid grid-cols-13 px-4 py-3 border-b border-gray-100 bg-gray-50"
         >
           <div
             class="text-xs font-medium text-gray-400 uppercase flex justify-center"
@@ -55,7 +55,11 @@
           >
             ID
           </div>
-
+          <div
+            class="text-xs font-medium text-gray-400 uppercase tracking-wide flex justify-center"
+          >
+            Image
+          </div>
           <div
             class="text-xs col-span-2 font-medium text-gray-400 uppercase flex justify-center"
           >
@@ -110,18 +114,24 @@
           <% data.forEach((element,index)=>{ %>
 
           <div
-            class="grid grid-cols-12 items-center px-4 py-3 hover:bg-gray-50 transition"
+            class="grid grid-cols-13 items-center px-4 py-3 hover:bg-gray-50 transition"
           >
             <!-- SL -->
             <div class="flex justify-center font-mono text-gray-400">
               <%= index+1 %>
             </div>
-
+            <!-- Image -->
+           
             <!-- ID -->
             <div class="flex justify-center font-mono text-gray-400">
               <%= element._id.toString().slice(-4) %>
             </div>
-
+ <div class="flex justify-center">
+              <img
+                src="/<%= element.image %>"
+                class="w-10 h-10 object-cover rounded-md border"
+              />
+            </div>
             <!-- NAME -->
             <div
               class="flex col-span-2 justify-center font-medium text-gray-900"
@@ -247,38 +257,35 @@
       </div>
     </div>
     <!-- DELETE MODAL -->
-<div
-  id="deleteModal"
-  class="fixed inset-0 bg-black/40 hidden items-center justify-center"
->
-  <div class="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
-    
-    <h2 class="text-lg font-semibold mb-4 text-gray-800">
-      Permanently delete this product?
-    </h2>
+    <div
+      id="deleteModal"
+      class="fixed inset-0 bg-black/40 hidden items-center justify-center"
+    >
+      <div class="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
+        <h2 class="text-lg font-semibold mb-4 text-gray-800">
+          Permanently delete this product?
+        </h2>
 
-    <div class="flex justify-center gap-4">
+        <div class="flex justify-center gap-4">
+          <!-- CANCEL -->
+          <button
+            onclick="closeDeleteModal()"
+            class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300"
+          >
+            Cancel
+          </button>
 
-      <!-- CANCEL -->
-      <button
-        onclick="closeDeleteModal()"
-        class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300"
-      >
-        Cancel
-      </button>
-
-      <!-- DELETE -->
-      <a
-        id="confirmDeleteBtn"
-        href="#"
-        class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
-      >
-        Delete
-      </a>
-
+          <!-- DELETE -->
+          <a
+            id="confirmDeleteBtn"
+            href="#"
+            class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+          >
+            Delete
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<script src="/script/hardDeleteModal.js"></script>
+    <script src="/script/hardDeleteModal.js"></script>
   </body>
 </html>
