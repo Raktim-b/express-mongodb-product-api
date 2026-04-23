@@ -308,8 +308,8 @@
             <!-- Image -->
             <div class="flex justify-center">
               <img
-                src="/<%= element.image %>"
-                class="w-10 h-10 object-cover rounded-md "
+                src="<%= element.image %>"
+                class="w-10 h-10 object-cover rounded-md"
               />
             </div>
 
@@ -325,7 +325,7 @@
               <% element.size.forEach(s => { %>
               <span
                 class="text-xs font-medium px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-700 border border-indigo-100"
-                ><%= s %></span
+                ><%= s.toUpperCase() %></span
               >
               <% }) %>
             </div>
@@ -345,12 +345,14 @@
 
             <!-- Color -->
             <div class="flex justify-center gap-1 flex-wrap">
-              <% element.color.forEach(c => { %>
-              <span
-                class="text-xs px-2 py-0.5 rounded-md bg-gray-200 text-gray-800 border border-gray-200"
-                ><%= c %></span
-              >
-              <% }) %>
+              <% element.color.forEach(c => { c.split(',').forEach(color => { %>
+
+              <span class="text-xs text-gray-800">
+                <%= color.trim().charAt(0).toUpperCase() +
+                color.trim().slice(1).toLowerCase() %>
+              </span>
+
+              <% }) }) %>
             </div>
 
             <!-- Category -->

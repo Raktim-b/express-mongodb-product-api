@@ -34,6 +34,7 @@ class AddProductPageController {
       });
       if (req.file) {
         product.image = req.file.path;
+        product.public_id = req.file.filename;
       }
       const result = await product.save();
       if (result) {

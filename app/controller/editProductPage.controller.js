@@ -1,5 +1,6 @@
 const ProductModel = require("../model/product.db");
 const httpStatusCode = require("../util/httpStatusCode");
+const cloudinary = require("../config/cloudinary");
 const fs = require("fs");
 class EditProductProductPage {
   async editProductPage(req, res) {
@@ -29,16 +30,11 @@ class EditProductProductPage {
       }
       let updateObj = { ...req.body };
       if (req.file) {
-        if (updatData.image) {
-          fs.unlink(`./${updatData.image}`, (err) => {
-            if (err) {
-              console.log("Error deleting file:", err);
-            } else {
-              console.log("File deleted successfully");
-            }
-          });
+        if (updatData.public_id) {
+          await cloudinary.uploader.destroy(updatData.public_id);
         }
         updateObj.image = req.file.path;
+        updateObj.public_id = req.file.filename;
       }
       await ProductModel.findByIdAndUpdate(id, updateObj, {
         new: true,

@@ -32,6 +32,9 @@ const ProductSchema = new Schema({
     type: String,
     // required: true,
   },
+  public_id: {
+    type: String,
+  },
   category: {
     type: String,
     required: true,
